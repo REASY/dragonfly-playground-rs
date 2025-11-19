@@ -1,0 +1,19 @@
+name: dragonfly-playground-rs
+services:
+  dragonfly:
+    image: ghcr.io/dragonflydb/dragonfly:v1.34.2
+    environment:
+      DFLY_max_multi_bulk_len: 2000100
+      DFLY_pipeline_buffer_limit: 872415232
+      DFLY_pipeline_queue_limit: 2000100
+      DFLY_maxmemory: "40g"
+    ulimits:
+      memlock: -1
+    ports:
+      - "6379:6379"
+    deploy:
+      resources:
+        limits:
+          cpus: "32"
+          memory: "48g"
+    cpuset: "0-32"
